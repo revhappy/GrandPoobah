@@ -1,69 +1,58 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Electric Skateboard</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="scripts.js"></script>
-</head>
-<body>
-  <header>
-    <h1>Electric Skateboard</h1>
-    <nav>
-      <a href="#product-description">Description</a>
-      <a href="#product-features">Features</a>
-      <a href="#product-specifications">Specifications</a>
-    </nav>
-  </header>
-  <main>
-    <img src="https://www.example.com/electric-skateboard.jpg" alt="Electric Skateboard">
-    <div class="product-description" id="product-description">
-      <h2>Description</h2>
-      <p>The electric skateboard is a fun and convenient mode of transportation. It is powered by a high-performance motor and a long-lasting battery, making it perfect for daily commuting or weekend adventures.</p>
-    </div>
-    <div class="product-features" id="product-features">
-      <h3>Features</h3>
-      <ul>
-        <li>High-performance motor</li>
-        <li>Long-lasting battery</li>
-        <li>Lightweight and portable</li>
-        <li>Smooth and responsive ride</li>
-      </ul>
-    </div>
-    <div class="product-specifications" id="product-specifications">
-      <h3>Specifications</h3>
-      <ul>
-        <li>Motor: 1000W</li>
-        <li>Battery: 36V, 8Ah</li>
-        <li>Range: 10 miles</li>
-        <li>Top speed: 20 mph</li>
-        <li>Charging time: 4 hours</li>
-        <li>Weight: 10 lbs</li>
-      </ul>
-    </div>
-    <button class="cta-button">Purchase now</button>
-  </main>
-  <footer>
-    <p>Copyright 2021 Electric Skateboard</p>
-  </footer>
-</body>
-</html>
-<style>
-  body {
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  header {
-    background-color: #E8E8E8;
-    padding: 20px;
-  }
-  h1 {
-    color: #333333;
-    margin: 0;
-    text-align: center;
-    font-size: 32px;
-    font-weight: 700;
-  }
-  nav {
-    display: flex;
-    justify-
+import React from 'react';
+import './styles.css';
+
+function App() {
+return (
+<div className="App">
+<header>
+<h1>Electric Skateboard</h1>
+<nav>
+<a href="#product-description">Description</a>
+<a href="#product-features">Features</a>
+<a href="#product-specifications">Specifications</a>
+</nav>
+</header>
+<main>
+<img src="https://www.example.com/electric-skateboard.jpg" alt="Electric Skateboard">
+<div className="product-description" id="product-description">
+<h2>Description</h2>
+<p>The electric skateboard is a fun and convenient mode of transportation. It is powered by a high-performance motor and a long-lasting battery, making it perfect for daily commuting or weekend adventures.</p>
+</div>
+<div className="product-features" id="product-features">
+<h3>Features</h3>
+<ul>
+<li>High-performance motor</li>
+<li>Long-lasting battery</li>
+<li>Lightweight and portable</li>
+<li>Smooth and responsive ride</li>
+</ul>
+</div>
+<div className="product-specifications" id="product-specifications">
+<h3>Specifications</h3>
+<ul>
+<li>Motor: 1000W</li>
+<li>Battery: 36V, 8Ah</li>
+<li>Range: 10 miles</li>
+<li>Top speed: 20 mph</li>
+<li>Charging time: 4 hours</li>
+<li>Weight: 10 lbs</li>
+</ul>
+</div>
+<button className="cta-button">Purchase now</button>
+</main>
+<footer>
+<p>Copyright 2021 Electric Skateboard</p>
+</footer>
+</div>
+);
+}
+
+export default App;
+
+// styles.css
+
+body {
+font-family: 'Open Sans', sans-serif;
+margin: 0;
+padding: 0;
+background-image: linear-gradient(to bottom, #F4F
