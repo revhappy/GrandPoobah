@@ -1,74 +1,107 @@
+
 <!DOCTYPE html>
 <html>
-<head>
-  <style>
-    body {
-      font-family: 'Archivo Narrow', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+  <head>
+    <meta charset="utf-8">
+    <title>ChatGPT Turbo API Example</title>
+    <style>
+      /* Add some basic styling to the chat window */
+      #chat-window {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin: 10px;
+        padding: 10px;
+        height: 400px;
+        overflow: auto;
+      }
+      #chat-form {
+        margin-top: 10px;
+      }
+      #chat-input {
+        width: 80%;
+      }
+      #chat-submit {
+        width: 18%;
+      }
+      .chat-message {
+        margin-top: 10px;
+        padding: 5px;
+        border-radius: 5px;
+      }
+      .user-message {
+        background-color: #f2f2f2;
+      }
+      .bot-message {
+        background-color: #4CAF50;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ChatGPT Turbo API Example</h1>
+    <div id="chat-window"></div>
+    <form id="chat-form">
+      <input type="text" id="chat-input" placeholder="Type your message...">
+      <input type="submit" id="chat-submit" value="Send">
+    </form>
+    <script>
+      // Define the API endpoint and API key
+      const apiEndpoint = "https://api.chatgpt.com/v1/chat";
+      const apiKey = "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";
 
-    .header {
-      background-color: #2A2A2A;
-      color: #FFFFFF;
-      padding: 20px;
-      text-align: center;
-    }
+      // Get references to the chat window and form elements
+      const chatWindow = document.getElementById("chat-window");
+      const chatForm = document.getElementById("chat-form");
+      const chatInput = document.getElementById("chat-input");
 
-    .header h1 {
-      margin: 0;
-    }
+      // Function to add a message to the chat window
+      function addMessageToChatWindow(message, isUser) {
+        // Create a new chat message element
+        const chatMessage = document.createElement("div");
+        chatMessage.classList.add("chat-message");
+        if (isUser) {
+          chatMessage.classList.add("user-message");
+        } else {
+          chatMessage.classList.add("bot-message");
+        }
+        chatMessage.textContent = message;
 
-    .section {
-      margin: 50px;
-    }
+        // Add the message element to the chat window
+        chatWindow.appendChild(chatMessage);
 
-    .section h2 {
-      color: #2A2A2A;
-      font-size: 24px;
-      margin-bottom: 30px;
-    }
+        // Scroll to the bottom of the chat window
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+      }
 
-    .infobox {
-      background-color: #FFFFFF;
-      border: 1px solid #2A2A2A;
-      float: right;
-      padding: 20px;
-      width: 25%;
-    }
+      // Function to handle the form submit event
+      function handleChatFormSubmit(event) {
+        // Prevent the form from submitting and reloading the page
+        event.preventDefault();
 
- .line {
-      width: 100%;
-      height: 2px;
-      background-color: #ccc;
-      /*margin: 20px;*/
-    }
-    
-  </style>
-</head>
-<body>
-  <div class="header">
-    <h1>Robb Sha</h1>
-  </div>
-  <div class="infobox">
-    <h2>Info Box</h2>
-    <p>Born: 06/02/1986 in Kowloon, Hong Kong</p>
-    <p>Occupation: Product Developer and Entrepreneur</p>
-    <p>Interests: Cars, bikes, transportation, music</p>
-  </div>
-  <div class="lines"></div>
-  <div class="section">
-    <h2>Early Life</h2>
-    <p>Robb Sha was born on 06/02/1986 in Kowloon, Hong Kong. He grew up in a loving family with two sisters, a mother and a father. Despite his parents being great, he grew up in poverty.</p>
-  </div>
- <div class="line"></div>
-    <h2>Career</h2>
-    <p>Robb's occupation is that of a Product Developer and Entrepreneur. He has worked on specific projects, such as creating user interfaces for industrial machines. He measures his success in his career by making an impact and making people's work flow easier.</p>
-  </div>
-<div class="line"></div>
-    <h2>Interests and Hobbies</h2>
-    <p>In his free time, Robb enjoys cars, bikes, other forms of transportation and music. He has an independent streak and marches to his own drum. He cherishes his family and friends and doesn't want to take them for granted. He has an amicable and respectful relationship with his peers and colleagues. He also helps his community and charities that are accountable.</p>
-  </div>
- <div class="line"></div>
-    <h2>Challenges and Impact on Society</h2>
-    <p>One of the challenges Robb faced in his life is growing up poor and earning respect from his peers through grit rather than connections. His impact on society is driving transportation and housing costs to approach zero. He is extremely distrustful of mainstream media and will not give any
+        // Get the user's message from the input field
+        const userMessage = chatInput.value;
+
+        // Clear the input field
+        chatInput.value = "";
+
+        // Add the user's message to the chat window
+        addMessageToChatWindow(userMessage, true);
+
+        // Define the message to send to the API
+        const message = {
+          message: userMessage,
+          context: "",
+          model: "chatgpt-turbo",
+          temperature: 0.7,
+        };
+
+        // Send the request to the API using HTTP POST method with a JSON payload
+        fetch(apiEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${apiKey}`,
+          },
+          body: JSON.stringify(message),
+        })
+          .then((response
